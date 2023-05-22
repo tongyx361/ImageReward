@@ -147,6 +147,33 @@ https://user-images.githubusercontent.com/98524878/233889490-5c4a062f-bb5e-4179-
 - **"Reload UI"** will not reload the model nor unload it, but **reuse**s the currently loaded model (if it exists).
 - A **"Unload Model"** button is provided to manually unload the currently loaded model.
 
+## Reproduce Experiments in Table 1
+
+<p align="center">
+    <img alt="Table_1_in_paper" src="figures/Table_1_in_paper.png" width="700px">
+</p>
+
+**Note:** The experimental results are produced in an environment that satisfies:
+- (NVIDIA) Driver Version: 515.86.01
+- CUDA Version: 11.7
+- `torch` Version: 1.12.1+cu113
+According to our own reproduction experience, reproducing this experiment in other environments may cause the last decimal place to fluctuate, typically within a range of ±0.1.
+
+Run the following script to automatically download data, baseline models, and run experiments:
+
+```bash
+bash ./scripts/test-benchmark.sh
+```
+
+Then you can check the results in **`benchmark/results/` or the terminal**.
+
+If you want to check the raw data files individually:
+
+- Test prompts and corresponding human rankings for images are located in [`benchmark/benchmark-prompts.json`](benchmark/benchmark-prompts.json).
+- Generated outputs for each prompt (originally from [DiffusionDB](https://github.com/poloclub/diffusiondb)) can be downloaded from [Huggingface](https://huggingface.co/THUDM/ImageReward/tree/main/generations) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/8048c335cb464220b663/).
+    - Each `<model_name>.zip` contains a directory of the same name, in which there are in total 1000 images generated from 100 prompts of 10 images each.
+    - Every `<model_name>.zip` should be decompressed into `benchmark/generations/` as directory `<model_name>` that contains images.
+
 ## Reproduce Experiments in Table 2
 
 <p align="center">
@@ -163,10 +190,6 @@ If you want to check the raw data files individually:
 
 * Test prompts and corresponding human rankings for images are located in [`data/test.json`](data/test.json).
 * Generated outputs for each prompt (originally from [DiffusionDB](https://github.com/poloclub/diffusiondb)) can be downloaded from [Huggingface](https://huggingface.co/THUDM/ImageReward/blob/main/test_images.zip) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/9bd245027652422499f4/?dl=1). It should be decompressed to `data/test_images`.
-
-## Reproduce Experiments in Table 4
-
-TODO
 
 ## Citation
 
